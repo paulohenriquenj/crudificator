@@ -2,6 +2,8 @@
 
 namespace Crudificator\controller;
 
+use Crudificator\controller\formCreateController;
+
 
 class crudificatorController{
 
@@ -69,9 +71,12 @@ class crudificatorController{
         return false;
     }
 
-    public function createFormsTable()
+    public function createFormsTable(formConfig)
     {
-        # code...
+        $fcc = new formCreateController(formConfig);
+
+        $fcc->createForm();
+        
     }
 
 }
