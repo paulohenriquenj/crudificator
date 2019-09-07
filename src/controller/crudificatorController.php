@@ -20,4 +20,18 @@ class crudificatorController{
         $this->db = new $className;
     }
 
+
+    public function getTableInfo($config)
+    {
+        $this->setDataBase($config['db_type']);
+
+        $this->createDatabasInstance();
+
+        $this->db->connect($config);
+
+        $tableInfo = $this->db->getTableInfo($config['database'], $config['table']);
+
+        return $tableInfo->fech_assoc();
+    }
+
 }
