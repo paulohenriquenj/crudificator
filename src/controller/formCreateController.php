@@ -2,6 +2,7 @@
 
 namespace Crudificator\controller;
 
+use Crudificator\filter\createHtmlElement;
 use Crudificator\filter\filterNotShowFieldOnForm;
 
 class formCreateController
@@ -12,6 +13,7 @@ class formCreateController
         $this->config = $config;
         $this->setRequiredFields();
         $this->filter = new filterNotShowFieldOnForm();
+        $this->html = new createHtmlElement();
     }
 
     public function createForm()
@@ -44,8 +46,7 @@ class formCreateController
 
     public function htmlElementCreate($field)
     {
-        
-        $this->htmlElements [] = 'Elemento: ' . var_export($field, true);
+        $this->htmlElements [] = $this->html->drawElement($field);
     }
 
     public function haveAllRequiredFields($configToTest)
