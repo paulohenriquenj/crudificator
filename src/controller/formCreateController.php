@@ -27,23 +27,25 @@ class formCreateController
     private function createFormElement($fieldInfo)
     {
         if ($this->haveAllRequiredFields($fieldInfo) ) {
-            array_walk($fieldInfo,
-                function ($value, $key) {
-                    if (! $this->filter->hasRestriction($key, $value) ) {
-                        $this->htmlElementCreate($key, $value);
-                    }
+
+            foreach ($fieldInfo as $key => $value) {
+                if($this->filter->hasRestriction($key, $value) ) {
+                    return;
                 }
-            );
+            }
+            
+            $this->htmlElementCreate($fieldInfo);
+            
             return true;
         }
 
         abort('Missin required info.');
     }
 
-    public function htmlElementCreate($key, $value)
+    public function htmlElementCreate($field)
     {
         
-        $this->htmlElements [$key] = 'Elemento: ' . $value;
+        $this->htmlElements [] = 'Elemento: ' . var_export($field, true);
     }
 
     public function haveAllRequiredFields($configToTest)
