@@ -9,13 +9,17 @@ class createHtmlElement{
 
     public function drawElement($fieldInfo)
     {
-        if(empty($this->elementTypes)) { 
+        if (empty($this->elementTypes) ) { 
             $this->setElementTypes();
         }
-        $elementType = $this->getElementType($fieldInfo['type']);
-        $html = $this->loadHtmlPartial($elementType);
-
-        dump($this->$elementType($html, $fieldInfo));
+        
+        $element = $this->getElementType($fieldInfo['type']);
+        
+        return $this->$element(
+            $this->loadHtmlPartial($element),
+            $fieldInfo
+        );
+               
     }
 
     public function loadHtmlPartial($htmlPartialName)
@@ -31,10 +35,31 @@ class createHtmlElement{
         return $this->elementTypes;
     }
 
-    public function input_text($html, $fieldInfo)
+    public function input_text($html, $fieldInfo, $class='')
     {
-        $html = str_replace('__label__', $fieldInfo['label'], $html);
-        return $html;
+        return str_replace(
+            ['__label__', '__class__'], 
+            [$fieldInfo['label'], $class],
+            $html
+        );
+    }
+
+    public function form($action, $method, $class='')
+    {
+        return str_replace(
+            ['__action__', '__method__', '__class__'],
+            [$action, $method, $class],
+            $this->loadHtmlPartial('form')
+        );
+    }
+
+    public function formWraper($htmlInputs)
+    {
+        return str_replace(
+            '__inputs__', 
+            $htmlInputs, 
+            $this->form('', 'GET')
+        );
     }
 
     public function getElementType($type)

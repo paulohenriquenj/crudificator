@@ -23,7 +23,7 @@ class formCreateController
             [$this, 'createFormElement']
         );
 
-        return implode('<p>', $this->htmlElements);
+        return $this->html->formWraper(implode(' ', $this->htmlElements));
     }
 
     private function createFormElement($fieldInfo)
