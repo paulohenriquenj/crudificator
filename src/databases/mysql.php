@@ -7,8 +7,8 @@ class mysql{
     public function connect($config)
     {
         try {
-            $pdo = new PDO($this->parseConfig($config), $config['userName'], $config['password']);
-            return $pdo;
+            $conn = mysqli_connect($config['host'],  $config['userName'], $config['password'], $config['database']);
+            return $conn;
         } catch (PDOException $e) {
             echo 'Can not connect to database.';
         }
