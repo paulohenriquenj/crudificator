@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<phpunit
+    bootstrap="core.php"
+    stopOnFailure="true" >
+    
+    <testsuites>
+        <testsuite
+            name="Test Routers">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
