@@ -1,3 +1,3 @@
 <?php
 
-return '__field__: <input type="text" class="__class__" placeholder="__label__">' . "\n";
+return '<input type="text" class="__class__" placeholder="__label__" name="__field__">' . "\n";
