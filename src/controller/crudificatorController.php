@@ -75,7 +75,7 @@ class crudificatorController{
     {
         $fcc = new formCreateController($formConfig);
 
-        $fcc->createForm();
+       echo $fcc->createForm();
 
     }
 
