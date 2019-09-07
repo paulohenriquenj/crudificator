@@ -37,7 +37,7 @@ Flight::route('POST /database/tableInfo', function () {
         'host' => flight::request()->data['host'],
         'database' => flight::request()->data['database'],
         'db_type' => Flight::request()->data['db_type'],
-        'table' => Flight::request()->data['tabl'],
+        'table' => Flight::request()->data['table'],
     ]);
 
 

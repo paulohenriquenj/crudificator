@@ -31,7 +31,7 @@ class crudificatorController{
 
         $tableInfo = $this->db->getTableInfo($config['database'], $config['table']);
 
-        return $tableInfo->fech_assoc();
+        return dd($tableInfo->fetch_assoc());
     }
 
 }
