@@ -2,6 +2,8 @@
 
 namespace Crudificator\controller;
 
+use Crudificator\filter\filterNotShowFieldOnForm;
+
 class formCreateController
 {
     public $requiredFields=[];
@@ -9,6 +11,7 @@ class formCreateController
     public function __construct($config) {
         $this->config = $config;
         $this->setRequiredFields();
+        $this->filter = new filterNotShowFieldOnForm();
     }
 
     public function createForm()
@@ -17,18 +20,30 @@ class formCreateController
             $this->config,
             [$this, 'createFormElement']
         );
+
+        return implode('<p>', $this->htmlElements);
     }
 
     private function createFormElement($fieldInfo)
     {
         if ($this->haveAllRequiredFields($fieldInfo) ) {
-            
-            dd($fieldInfo);
-
+            array_walk($fieldInfo,
+                function ($value, $key) {
+                    if (! $this->filter->hasRestriction($key, $value) ) {
+                        $this->htmlElementCreate($key, $value);
+                    }
+                }
+            );
             return true;
         }
 
         abort('Missin required info.');
+    }
+
+    public function htmlElementCreate($key, $value)
+    {
+        
+        $this->htmlElements [$key] = 'Elemento: ' . $value;
     }
 
     public function haveAllRequiredFields($configToTest)
