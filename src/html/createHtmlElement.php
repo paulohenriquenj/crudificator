@@ -38,8 +38,8 @@ class createHtmlElement{
     public function input_text($html, $fieldInfo, $class='')
     {
         return str_replace(
-            ['__label__', '__class__'], 
-            [$fieldInfo['label'], $class],
+            ['__label__', '__field__' , '__class__'], 
+            [$fieldInfo['label'], ucfirst($fieldInfo['field']), $class],
             $html
         );
     }
