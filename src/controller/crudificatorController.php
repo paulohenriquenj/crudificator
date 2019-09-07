@@ -14,7 +14,7 @@ class crudificatorController{
     }
 
 
-    public function databaseCreateInstange()
+    public function createDatabasInstance()
     {
         $className = 'Crudificator\\databases\\' . $this->databaseType;
         $this->db = new $className;
