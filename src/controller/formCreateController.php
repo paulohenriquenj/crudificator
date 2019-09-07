@@ -4,9 +4,11 @@ namespace Crudificator\controller;
 
 class formCreateController
 {
+    public $requiredFields=[];
 
     public function __construct($config) {
         $this->config = $config;
+        $this->setRequiredFields();
     }
 
     public function createForm()
@@ -21,5 +23,30 @@ class formCreateController
     {
         echo $field . '=> ' . $value;
         echo '<br>';
+    }
+
+    public function haveAllRequiredFields($configToTest)
+    {
+        foreach ($this->requiredFields as $fieldName) {
+            if (! isset($configToTest[$fieldName]) ) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    public function setRequiredFields()
+    {
+        $this->requiredFields =  [
+            'field',
+            'type',
+            'size',
+            'key',
+            'extra',
+            'default',
+            'label',
+            'show',
+        ];
     }
 }
