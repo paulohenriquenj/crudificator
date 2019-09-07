@@ -8,3 +8,10 @@ function dd(){
     echo '</pre>';
     exit('X_X');
 }
+
+function abort($msg)
+{
+    exit(
+        '<p style="color: red; margin: 100px" border: solid 1 px black>' . $msg . ' - ABORT</p>'
+    );
+}
