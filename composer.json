@@ -1,5 +1,8 @@
 {
     "require-dev": {
         "phpunit/phpunit": "^8.3"
+    },
+    "require": {
+        "mikecao/flight": "^1.3"
     }
 }
