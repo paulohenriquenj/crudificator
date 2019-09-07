@@ -8,6 +8,6 @@ class routerTest extends TestCase {
     {
         $content = file_get_contents('http://localhost:8099/');
         
-        $this->assertEquals('hello world!', $content);
+        $this->assertStringContainsString('Mysql', $content);
     }
 }
