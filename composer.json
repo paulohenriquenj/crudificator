@@ -3,6 +3,7 @@
         "phpunit/phpunit": "^8.3"
     },
     "require": {
-        "mikecao/flight": "^1.3"
+        "mikecao/flight": "^1.3",
+        "symfony/console": "^4.3"
     }
 }
