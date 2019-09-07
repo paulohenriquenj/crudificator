@@ -7,12 +7,22 @@ class formCreateControllerTest extends PHPUnit\Framework\TestCase{
 
     public function testVerificationOfRequiredFields()
     {
+        $this->initFcc();
+
+        $this->assertTrue($this->fcc->haveAllRequiredFields(($this->config())[0]));
+
+    }
+
+    // public function test(Type $var = null)
+    // {
+    //     $this->fcc->createFormElement();
+    // }
+
+    public function initFcc()
+    {
         $config = $this->config();
 
-        $fcc = new formCreateController($config);
-
-        $this->assertTrue($fcc->haveAllRequiredFields($config[0]));
-
+        $this->fcc = new formCreateController($config);
     }
 
     private function config()
