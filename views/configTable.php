@@ -13,7 +13,11 @@
                 <tbody>
                 <?php foreach($table as $index=>$field) { ?>
                     <tr>
-                        <td><strong><?=$field['field'];?></strong> <small><i>(<?=$field['type'];?>)</i></small></td>
+                        <td>
+                            <strong><?=$field['field'];?></strong> <small><i>(<?=$field['type'];?>)</i>
+                            <?=($field['key'] == 'PRI' ? '<i class="fa fa-fw fa-key" style="color: golder;"></i>' : '');?>
+                            </small>
+                        </td>
                         <td><input type="text" name="label_<?=$index;?>" placeholder="Label"></td>
                         <td align="center" style="vertical-align: bottom;">
                             <input type="checkbox" name="show_<?=$index;?>" checked>
