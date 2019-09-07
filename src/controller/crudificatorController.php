@@ -31,7 +31,47 @@ class crudificatorController{
 
         $tableInfo = $this->db->getTableInfo($config['database'], $config['table']);
 
-        return dd($tableInfo->fetch_assoc());
+        return $tableInfo->fetch_assoc();
+    }
+
+    public function generateTable($tableInfo)
+    {
+        foreach($tableInfo as $field) {
+            $table[] = [
+                'field'   => $field['Field'],
+                'type'    => $this->getFieldType($field),
+                'size'    => $this->getFieldSize($field),
+                'key'     => $field['Key'],
+                'default' => $field['Default'],
+                'extra'   => $field['Extra'],
+            ];
+        }
+
+        return $table;
+    }
+
+    public function getFieldType($field)
+    {
+        if( strpos($field['Type'], '(') !== false ) {
+            return explode('(', $field['Type'])[0];
+        }
+
+        return $field['Type'];
+    }
+
+    public function getFieldSize($field)
+    {
+        if( strpos($field['Type'], '(') !== false ) {
+            preg_match('#\((\d+)\)#is', $field['Type'], $size);
+            return $size[1];
+        }
+
+        return false;
+    }
+
+    public function createFormsTable()
+    {
+        # code...
     }
 
 }

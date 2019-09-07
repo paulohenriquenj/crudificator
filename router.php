@@ -31,7 +31,7 @@ Flight::route('POST /database/tableInfo', function () {
     $crudController = new crudificatorController();
 
     
-    $crudController->getTableInfo([
+    $tableInfo = $crudController->getTableInfo([
         'userName' => flight::request()->data['user'],
         'password' => flight::request()->data['password'],
         'host' => flight::request()->data['host'],
@@ -40,6 +40,10 @@ Flight::route('POST /database/tableInfo', function () {
         'table' => Flight::request()->data['table'],
     ]);
 
+    $table = $crudController->generateTable($tableInfo);
+
+    Flight::render('configTable', ['table' => $table], 'content');
+    Flight::render('layout');
 
     // Flight::halt(500, 'Form não encontrado.');
 });
@@ -47,13 +51,13 @@ Flight::route('POST /database/tableInfo', function () {
 
 Flight::route('POST /table/config', function () {
 
-    $crudController = new crudificatorControl;
+    $crudController = new crudificatorController;
     $formConfig = [];
 
     foreach (Flight::request()->data as $key => $value) {
         $fieldInfo = explode('_', $key);
 
-        $formConfig [$fieldInfo[0]][$fieldInfo[1]] = $value;
+        $formConfig [$fieldInfo[1]][$fieldInfo[0]] = $value;
     }
 
     $crudController->createFormsTable($formConfig);
