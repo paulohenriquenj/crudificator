@@ -1,8 +1,10 @@
 <?php
 
-function dd($variable){
+function dd(){
     echo '<pre>';
-    print_r($variable);
+    array_map(function ($item){
+        var_dump($item);
+    }, func_get_args());
     echo '</pre>';
-    exit(__FILE__ . ':' . __LINE__);
+    exit('X_X');
 }
