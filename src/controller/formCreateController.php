@@ -19,10 +19,16 @@ class formCreateController
         );
     }
 
-    private function createFormElement($field, $value)
+    private function createFormElement($fieldInfo)
     {
-        echo $field . '=> ' . $value;
-        echo '<br>';
+        if ($this->haveAllRequiredFields($fieldInfo) ) {
+            
+            dd($fieldInfo);
+
+            return true;
+        }
+
+        abort('Missin required info.');
     }
 
     public function haveAllRequiredFields($configToTest)
