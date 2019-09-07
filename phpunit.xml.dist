@@ -8,7 +8,7 @@
     
     <testsuites>
         <testsuite
-            name="Test Routers">
+            name="Tests">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
