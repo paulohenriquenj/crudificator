@@ -64,7 +64,7 @@ class crudificatorController{
     public function getFieldSize($field)
     {
         if( strpos($field['Type'], '(') !== false ) {
-            preg_match('#\((\d+)\)#is', $field['Type'], $size);
+            preg_match('#\(([\d\,]+)\)#is', $field['Type'], $size);
             return $size[1];
         }
 
