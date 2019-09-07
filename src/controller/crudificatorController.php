@@ -71,12 +71,12 @@ class crudificatorController{
         return false;
     }
 
-    public function createFormsTable(formConfig)
+    public function createFormsTable($formConfig)
     {
-        $fcc = new formCreateController(formConfig);
+        $fcc = new formCreateController($formConfig);
 
         $fcc->createForm();
-        
+
     }
 
 }
