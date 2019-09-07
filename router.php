@@ -43,3 +43,20 @@ Flight::route('POST /database/tableInfo', function () {
 
     // Flight::halt(500, 'Form não encontrado.');
 });
+
+
+Flight::route('POST /table/config', function () {
+
+    $crudController = new crudificatorControl;
+    $formConfig = [];
+
+    foreach (Flight::request()->data as $key => $value) {
+        $fieldInfo = explode('_', $key);
+
+        $formConfig [$fieldInfo[0]][$fieldInfo[1]] = $value;
+    }
+
+    $crudController->createFormsTable($formConfig);
+
+
+});
