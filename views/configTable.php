@@ -1,8 +1,10 @@
 <div class="row">
-    <div class="col-md-8 order-md-1">
+    <div class="col-md-2 order-md-1"></div>
+
+    <div class="col-md-8 order-md-2">
         <h4 class="mb-3">Configurações</h4>
         <form action="/table/config" method="POST">
-            <table class="table table-bordered table-hover table-sm">
+            <table class="table table-bordered table-hover table-sm valign-initial">
                 <thead class="thead-dark">
                     <tr>
                         <th>Campo</th>
@@ -14,11 +16,14 @@
                 <?php foreach($table as $index=>$field) { ?>
                     <tr>
                         <td>
-                            <strong><?=$field['field'];?></strong> <small><i>(<?=$field['type'];?>)</i>
-                            <?=($field['key'] == 'PRI' ? '<i class="fa fa-fw fa-key" style="color: golder;"></i>' : '');?>
-                            </small>
+                            <strong><?=$field['field'];?></strong> <small><i>(<?=$field['type'];?>)</i></small>
+                            <div style="float:right">
+                                <?=$field['icons'];?>
+                            </div>
                         </td>
-                        <td><input type="text" name="label_<?=$index;?>" placeholder="Label"></td>
+                        <td>
+                            <input type="text" name="label_<?=$index;?>" placeholder="Label">
+                        </td>
                         <td align="center" style="vertical-align: bottom;">
                             <input type="checkbox" name="show_<?=$index;?>" checked>
                             <input type="hidden" name="field_<?=$index;?>" value="<?=$field['field'];?>">
@@ -35,4 +40,6 @@
             <button type="submit" class="btn btn-success">Gerar</button>
         </form>
     </div>
+
+    <div class="col-md-2 order-md-3"></div>
 </div>

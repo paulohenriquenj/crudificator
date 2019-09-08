@@ -9,6 +9,7 @@ class crudificatorController{
 
     public $databaseType;
     public $db;
+    public $fieldIcons;
 
     public function setDataBase($databaseType)
     {
@@ -40,12 +41,14 @@ class crudificatorController{
     {
         foreach($tableInfo as $field) {
             $table[] = [
-                'field'   => $field['Field'],
-                'type'    => $this->getFieldType($field),
-                'size'    => $this->getFieldSize($field),
-                'key'     => $field['Key'],
-                'default' => $field['Default'],
-                'extra'   => $field['Extra'],
+                'field'    => $field['Field'],
+                'type'     => $this->getFieldType($field),
+                'type_raw' => $field['Type'],
+                'size'     => $this->getFieldSize($field),
+                'key'      => $field['Key'],
+                'default'  => $field['Default'],
+                'extra'    => $field['Extra'],
+                'icons'    => $this->getFieldIcons($field),
             ];
         }
 
@@ -69,6 +72,26 @@ class crudificatorController{
         }
 
         return false;
+    }
+
+    public function getFieldIcons($field)
+    {
+        if(empty($this->fieldIcons)) {
+            $this->setFieldIcons();
+        }
+
+        return $this->fieldIcons[$field['Key']] ?? '';
+    }
+
+    public function setFieldIcons()
+    {
+        $this->fieldIcons = [
+            'PRI' => '<i class="fa fa-fw fa-key key-pk" title="Primary Key"></i>',
+            'MUL' => '<i class="fa fa-fw fa-key key-index" title="Índice (não único)"></i>',
+            'UNI' => '<i class="fa fa-fw fa-key key-index" title="Índice (único)"></i>',
+        ];
+
+        return $this->fieldIcons;
     }
 
     public function createFormsTable($formConfig)

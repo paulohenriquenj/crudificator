@@ -33,6 +33,17 @@
           font-size: 3.5rem;
         }
       }
+      .key-pk {
+        color: #eec700; 
+        cursor: help;
+      }
+      .key-index {
+        color: #bbb; 
+        cursor: help;
+      }
+      .valign-initial td {
+        vertical-align: initial;
+      }
     </style>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" integrity="sha256-zmfNZmXoNWBMemUOo1XUGFfc0ihGGLYdgtJS3KCr/l0=" crossorigin="anonymous" />
