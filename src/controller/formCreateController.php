@@ -23,7 +23,9 @@ class formCreateController
             [$this, 'createFormElement']
         );
 
-        return $this->html->formWraper(implode(' ', $this->htmlElements));
+        return  $this->html->htmlWraper(
+            $this->html->formWraper(implode(' ', $this->htmlElements))
+        );
     }
 
     private function createFormElement($fieldInfo)

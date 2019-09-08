@@ -35,7 +35,7 @@ class createHtmlElement{
         return $this->elementTypes;
     }
 
-    public function input_text($html, $fieldInfo, $class='')
+    public function input_text($html, $fieldInfo, $class='form-control')
     {
         return str_replace(
             ['__label__', '__field__' , '__class__'], 
@@ -59,6 +59,15 @@ class createHtmlElement{
             '__inputs__', 
             $htmlInputs, 
             $this->form('', 'GET')
+        );
+    }
+
+    public function htmlWraper($content)
+    {
+        return str_replace(
+            ['__content__'],
+            $content,
+            $this->loadHtmlPartial('html')
         );
     }
 
