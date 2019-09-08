@@ -18,6 +18,8 @@ class formCreateController
 
     public function createForm()
     {
+        $this->removeDontShowFields();
+
         array_walk(
             $this->config,
             [$this, 'createFormElement']
@@ -26,6 +28,13 @@ class formCreateController
         return  $this->html->htmlWraper(
             $this->html->formWraper(implode(' ', $this->htmlElements))
         );
+    }
+
+    public function removeDontShowFields()
+    {
+        $this->config = array_filter($this->config, function ($item) {
+            return ! empty($item['show']);
+        });
     }
 
     private function createFormElement($fieldInfo)
