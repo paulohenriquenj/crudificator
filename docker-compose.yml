@@ -1,0 +1,31 @@
+version: '3'
+services:
+  php:
+    build: .
+    image: php:7.2-fpm
+    container_name: "Crudificator_PHP"
+    volumes:
+      - .:/code
+    networks:
+      static-network:
+        ipv4_address: 172.30.0.3
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    container_name: "Crudificator_NGINX"
+    depends_on:
+      - "php"
+    volumes:
+      - .:/code
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php
+    networks:
+      static-network:
+        ipv4_address: 172.30.0.2
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
