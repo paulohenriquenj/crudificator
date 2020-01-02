@@ -11,5 +11,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"\
 	&& php -r "unlink('composer-setup.php');"
 RUN ls -al
 RUN ./composer.phar install
+RUN docker-php-ext-install mysqli
 WORKDIR /code
 ENTRYPOINT ["bash","-c","docker-entrypoint.sh"]
