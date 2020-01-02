@@ -17,7 +17,7 @@ class crudificatorController{
     }
 
 
-    public function createDatabasInstance()
+    public function createDatabaseInstance()
     {
         $className = 'Crudificator\\databases\\' . $this->databaseType;
         $this->db = new $className;
@@ -28,7 +28,7 @@ class crudificatorController{
     {
         $this->setDataBase($config['db_type']);
 
-        $this->createDatabasInstance();
+        $this->createDatabaseInstance();
 
         $this->db->connect($config);
 

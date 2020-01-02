@@ -11,7 +11,7 @@ class crudificatorControllerTest extends PHPUnit\Framework\TestCase{
 
         $crudController->setDataBase('mysql');
         
-        $crudController->createDatabasInstance();
+        $crudController->createDatabaseInstance();
 
         $this->assertStringContainsString('mysql', get_class($crudController->db));
 
