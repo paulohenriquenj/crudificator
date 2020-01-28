@@ -37,6 +37,7 @@
                 <?php } ?>
                 </tbody>
             </table>
+            <input type="text" name="nome_rota" placeholder="nome da rota"><br /><br />
             <button type="submit" class="btn btn-success">Gerar</button>
         </form>
     </div>

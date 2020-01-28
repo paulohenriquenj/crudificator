@@ -102,4 +102,17 @@ class crudificatorController{
 
     }
 
+    public function writeRoutes($rota)
+    {
+        $routesFile = require __DIR__ . '/../html/partials/routes.php';
+
+        $routesFile = str_replace('__rota__', trim($rota['nome'], '/'), $routesFile);
+
+        echo '<hr ><pre class="highlight box-hl"><code>';
+        
+        echo $routesFile;
+
+        echo '</code></pre>';
+    }
+
 }

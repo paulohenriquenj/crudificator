@@ -62,5 +62,7 @@ Flight::route('POST /table/config', function () {
 
     $crudController->createFormsTable($formConfig);
 
+    $crudController->writeRoutes($formConfig['rota']);
 
+    Flight::render('layout');
 });
