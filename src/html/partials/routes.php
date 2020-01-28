@@ -1,26 +1,55 @@
 <?php
 
-$routesStr  = '// Index <br />';
-$routesStr .= "Flight::route('GET /__rota__', function() {<br />\t\$ctrl = new __rota__Controller;<br />}); <br /><br />";
+$routesStr  = <<<ROTAS
+// Index
+Flight::route('GET /__rota__', function() {
+    \$ctrl = new __rota__Controller;
+    \$ctrl->fetchAll();
+});
 
-$routesStr .= '// Create <br />';
-$routesStr .= "Flight::route('GET /__rota__/novo', function() {<br />\t\$ctrl = new __rota__Controller;<br />}); <br /><br />";
+// Create
+Flight::route('GET /__rota__/novo', function() {
+    \$ctrl = new __rota__Controller;
+    \$ctrl->showForm();
+});
 
-$routesStr .= '// Store <br />';
-$routesStr .= "Flight::route('POST /__rota__', function() {<br />\t\$ctrl = new __rota__Controller;<br />}); <br /><br />";
+// Store
+Flight::route('POST /__rota__', function() {
+    \$ctrl = new __rota__Controller;
+    \$data = Flight::request()->getBody();
+    \$ctrl->insert(\$data);
+});
 
-$routesStr .= '// Show <br />';
-$routesStr .= "Flight::route('GET /__rota__/@id', function() {<br />\t\$ctrl = new __rota__Controller;<br />}); <br /><br />";
+// Show
+Flight::route('GET /__rota__/@id', function() {
+    \$ctrl = new __rota__Controller;
+    if( \$ctrl->find(\$id) ) {
+        \$ctrl->show();
+    }
+});
 
-$routesStr .= '// Edit <br />';
-$routesStr .= "Flight::route('GET /__rota__/@id/editar', function() {<br />\t\$ctrl = new __rota__Controller;<br />}); <br /><br />";
+// Edit
+Flight::route('GET /__rota__/@id/editar', function() {
+    \$ctrl = new __rota__Controller;
+    if( \$ctrl->find(\$id) ) {
+        \$ctrl->showEditForm();
+    }
+});
 
-$routesStr .= '// Update <br />';
-$routesStr .= "Flight::route('POST /__rota__/@id', function() {<br />\t\$ctrl = new __rota__Controller;<br />}); <br /><br />";
+// Update
+Flight::route('POST /__rota__/@id', function() {
+    \$ctrl = new __rota__Controller;
+    \$data = Flight::request()->getBody();
+    \$ctrl->update(\$data);
+});
 
-$routesStr .= '// Delete <br />';
-$routesStr .= "Flight::route('POST /__rota__/@id/delete', function() {<br />\t\$ctrl = new __rota__Controller;<br />}); <br /><br />";
+// Delete
+Flight::route('POST /__rota__/@id/deletar', function() {
+    \$ctrl = new __rota__Controller;
+    \$ctrl->delete(\$id)
+});
 
-$routesStr .= "Flight::start();";
+// Flight::start();
+ROTAS;
 
 return $routesStr;

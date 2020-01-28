@@ -37,7 +37,10 @@
                 <?php } ?>
                 </tbody>
             </table>
-            <input type="text" name="nome_rota" placeholder="nome da rota"><br /><br />
+            <hr />
+            <h4 class="mb-3">Rotas</h4>
+            Digite o nome da rota: <input type="text" name="nome_rota" placeholder="Ex.: /usuario"><br /><br />
+            <hr />
             <button type="submit" class="btn btn-success">Gerar</button>
         </form>
     </div>
