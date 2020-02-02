@@ -102,17 +102,31 @@ class crudificatorController{
 
     }
 
+    public function writeController($rota)
+    {
+        echo $this->getStub('controller.php', $rota['nome']);
+    }
+
     public function writeRoutes($rota)
     {
-        $routesFile = require __DIR__ . '/../html/partials/routes.php';
+        echo $this->getStub('routes.php', $rota['nome']);
+    }
 
-        $routesFile = str_replace('__rota__', trim($rota['nome'], '/'), $routesFile);
+    public function getStub($file, $rota)
+    {
+        $stubFile = require __DIR__ . '/../html/partials/' . $file;
 
-        echo '<hr ><pre class="highlight box-hl"><code>';
-        
-        echo $routesFile;
+        $stubFileReplace = '<hr ><pre class="highlight box-hl"><code>';
 
-        echo '</code></pre>';
+        $stubFileReplace .=  str_replace(
+            ['__rota__', '__tabela__'], 
+            [trim($rota, '/'), 'tabela'], //fix this xD
+            $stubFile
+        );
+
+        $stubFileReplace .= '</code></pre>';
+
+        return $stubFileReplace;
     }
 
 }

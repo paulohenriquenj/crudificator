@@ -1,6 +1,8 @@
 <?php
 
 $routesStr  = <<<ROTAS
+// routes.php
+
 // Index
 Flight::route('GET /__rota__', function() {
     \$ctrl = new __rota__Controller;
@@ -21,7 +23,7 @@ Flight::route('POST /__rota__', function() {
 });
 
 // Show
-Flight::route('GET /__rota__/@id', function() {
+Flight::route('GET /__rota__/@id', function(\$id) {
     \$ctrl = new __rota__Controller;
     if( \$ctrl->find(\$id) ) {
         \$ctrl->show();
@@ -29,7 +31,7 @@ Flight::route('GET /__rota__/@id', function() {
 });
 
 // Edit
-Flight::route('GET /__rota__/@id/editar', function() {
+Flight::route('GET /__rota__/@id/editar', function(\$id) {
     \$ctrl = new __rota__Controller;
     if( \$ctrl->find(\$id) ) {
         \$ctrl->showEditForm();
@@ -37,14 +39,14 @@ Flight::route('GET /__rota__/@id/editar', function() {
 });
 
 // Update
-Flight::route('POST /__rota__/@id', function() {
+Flight::route('POST /__rota__/@id', function(\$id) {
     \$ctrl = new __rota__Controller;
     \$data = Flight::request()->getBody();
     \$ctrl->update(\$data);
 });
 
 // Delete
-Flight::route('POST /__rota__/@id/deletar', function() {
+Flight::route('POST /__rota__/@id/deletar', function(\$id) {
     \$ctrl = new __rota__Controller;
     \$ctrl->delete(\$id)
 });
