@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Credenciais</h4>
-        <form action="/database/tableInfo" method="POST" class="needs-validation" novalidate autocomplete="off">
+        <form action="/database/tableInfo" method="POST" class="needs-validation" autocomplete="off">
             <div class="form-group row">
                 <label for="host" class="col-sm-2 col-form-label">Host</label>
                 <div class="col-sm-10">
@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <label for="table" class="col-sm-2 col-form-label">Tabela</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="table" name="table" placeholder="Tabela" value="">
+                    <input type="text" class="form-control" id="table" name="table" placeholder="Tabela" required />
                 </div>
             </div>
             <div class="form-group row">
