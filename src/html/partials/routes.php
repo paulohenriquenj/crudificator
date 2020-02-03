@@ -4,51 +4,49 @@ $routesStr  = <<<ROTAS
 // routes.php
 
 // Index
-Flight::route('GET /__rota__', function() {
-    \$ctrl = new __rota__Controller;
-    \$ctrl->fetchAll();
+Flight::route('GET /usuario', function() {
+    \$ctrl = new usuarioController;
+    \$ctrl->drawTable( \$ctrl->fetchAll() );
 });
 
 // Create
-Flight::route('GET /__rota__/novo', function() {
-    \$ctrl = new __rota__Controller;
+Flight::route('GET /usuario/novo', function() {
+    \$ctrl = new usuarioController;
     \$ctrl->showForm();
 });
 
 // Store
-Flight::route('POST /__rota__', function() {
-    \$ctrl = new __rota__Controller;
-    \$data = Flight::request()->getBody();
-    \$ctrl->insert(\$data);
+Flight::route('POST /usuario', function() {
+    \$ctrl = new usuarioController;
+    \$ctrl->insert( Flight::request() );
 });
 
 // Show
-Flight::route('GET /__rota__/@id', function(\$id) {
-    \$ctrl = new __rota__Controller;
+Flight::route('GET /usuario/@id', function(\$id) {
+    \$ctrl = new usuarioController;
     if( \$ctrl->find(\$id) ) {
         \$ctrl->show();
     }
 });
 
 // Edit
-Flight::route('GET /__rota__/@id/editar', function(\$id) {
-    \$ctrl = new __rota__Controller;
+Flight::route('GET /usuario/@id/editar', function(\$id) {
+    \$ctrl = new usuarioController;
     if( \$ctrl->find(\$id) ) {
         \$ctrl->showEditForm();
     }
 });
 
 // Update
-Flight::route('POST /__rota__/@id', function(\$id) {
-    \$ctrl = new __rota__Controller;
-    \$data = Flight::request()->getBody();
-    \$ctrl->update(\$data);
+Flight::route('POST /usuario/@id', function(\$id) {
+    \$ctrl = new usuarioController;
+    \$ctrl->update( Flight::request() );
 });
 
 // Delete
-Flight::route('POST /__rota__/@id/deletar', function(\$id) {
-    \$ctrl = new __rota__Controller;
-    \$ctrl->delete(\$id)
+Flight::route('POST /usuario/@id/deletar', function(\$id) {
+    \$ctrl = new usuarioController;
+    \$ctrl->delete(\$id);
 });
 
 // Flight::start();

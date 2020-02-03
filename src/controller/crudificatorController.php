@@ -120,8 +120,8 @@ class crudificatorController{
 
         $stubFileReplace .=  str_replace(
             ['__rota__', '__tabela__'], 
-            [trim($rota, '/'), 'tabela'], //fix this xD
-            $stubFile
+            [trim($rota, '/'), '__tabela__'], //fix this xD
+            htmlspecialchars($stubFile)
         );
 
         $stubFileReplace .= '</code></pre>';
